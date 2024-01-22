@@ -4,12 +4,10 @@ import TodoItems from "./components/TodoItems";
 import { useState } from "react";
 import "./App.css";
 import NoElements from "./components/NoElements"
+import Todoitems from "./components/TodoItems";
 function App() {
-  let items = [
-    { todo: "kuch karo", date: "12/10/2023" },
-    { todo: "hi karo", date: "11/10/2023" },
-  ];
-  const [todoItems, setTodoItems] = useState(items);
+  
+  const [todoItems, setTodoItems] = useState([]);
 
   const handleClick = (workTodo, date) => {
     console.log(workTodo);
@@ -20,16 +18,20 @@ function App() {
   };
 
   const handleDelete = (todoname) => {
-    let newItems = [...todoItems];
-
-    for (let i = 0; i < newItems.length; i++) {
    
-      if (newItems[i].todo == todoname) {
-        newItems.splice(i, 1);
-        console.log(newItems);
-        setTodoItems(newItems);
-      }
-    }
+
+    // for (let i = 0; i < newItems.length; i++) {
+   
+    //   if (newItems[i].todo == todoname) {
+    //     newItems.splice(i, 1);
+    //     console.log(newItems);
+    //     setTodoItems(newItems);
+    //   }
+    // }
+
+    let newItems = todoItems.filter((n)=>n.todo!==todoname);
+    console.log(newItems)
+    setTodoItems(newItems);
   };
   return (
     <center className="todo-container">

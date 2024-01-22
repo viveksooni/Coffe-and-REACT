@@ -1,13 +1,16 @@
-import React, {useState} from 'react';
-function AddTodo({handleClick}) {
-  const [workTodo,setWorkTodo] = useState("");
-  const [date,setDate] = useState("");
+import React, { useState } from "react";
+import { IoIosAddCircle } from "react-icons/io";
+function AddTodo({ handleClick }) {
+  const [workTodo, setWorkTodo] = useState("");
+  const [date, setDate] = useState("");
+
   return (
     <div className="container text-center">
       <div className="row kg-row">
         <div className="col-6">
           <input
             type="text"
+            value={workTodo}
             placeholder="Enter Todo Here"
             onChange={(e) => {
               setWorkTodo(e.target.value);
@@ -16,6 +19,7 @@ function AddTodo({handleClick}) {
         </div>
         <div className="col-4">
           <input
+            value={date}
             type="date"
             onChange={(e) => {
               let date = e.target.value;
@@ -27,9 +31,13 @@ function AddTodo({handleClick}) {
           <button
             type="button"
             className="btn btn-success kg-button"
-            onClick={() => handleClick(workTodo,date)}
+            onClick={() => {
+              handleClick(workTodo, date);
+              setDate("");
+              setWorkTodo("");
+            }}
           >
-            Add
+            <IoIosAddCircle />
           </button>
         </div>
       </div>
