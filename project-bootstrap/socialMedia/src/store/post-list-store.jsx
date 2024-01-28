@@ -2,7 +2,7 @@ import { createContext, useReducer } from "react";
 
 export const PostListContext = createContext({
   posts: [],
-  getData: () => {},
+  setData: () => {},
   createPost: () => {},
   deletePost: () => {},
   selected: "",
@@ -42,21 +42,17 @@ function PostContextProvider({ children }) {
   const changeSelect = (option) => {
     dispatchSelected(option);
   };
-  const getData = () => {
-    fetch("https://dummyjson.com/posts")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        let posts = data.posts;
 
-        dispatchPostList({
-          type: "bulk_add",
-          payload: {
-            posts,
-          },
-        });
-      });
+  
+  const setData = (posts) => {
+    dispatchPostList({
+      type: "bulk_add",
+      payload: {
+        posts,
+      },
+    });
   };
+  
   const createPost = (title, caption, hashtag) => {
     let newPost = {
       type: "ADD_POST",
@@ -85,7 +81,7 @@ function PostContextProvider({ children }) {
         postList,
         createPost,
         deletePost,
-        getData,
+        setData,
         changeSelect,
         selected,
       }}

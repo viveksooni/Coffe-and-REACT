@@ -2,7 +2,16 @@ import React, { useContext } from "react";
 import { PostListContext } from "../store/post-list-store";
 
 function NoPost() {
-  const { getData } = useContext(PostListContext);
+
+  const { setData } = useContext(PostListContext);
+   const getData = () => {
+     fetch("https://dummyjson.com/posts")
+       .then((res) => res.json())
+       .then((data) => {
+        console.log(data);
+         setData(data.posts);
+       });
+   };
   return (
     <>
       <h1>No Post yet, do something else....</h1>

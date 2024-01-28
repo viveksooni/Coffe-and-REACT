@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 function Card({ post }) {
   const { deletePost } = useContext(PostListContext);
 
-  console.log(post);
+
   return (
     <>
       <div className="card myCss">
