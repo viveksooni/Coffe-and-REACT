@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { todoItemsContext } from "../store/todo-item-store";
 
+function NoElements() {
+  const { todoItems: items } = useContext(todoItemsContext);
 
-function NoElements({items})
-{
-    return <>
-    {items.length==0?<h1>there is nothing to do, just die...💀</h1>:null}
+  return (
+    <>
+      {items.length == 0 ? (
+        <h1>there is nothing to do, just die...💀</h1>
+      ) : null}
     </>
+  );
 }
 
 export default NoElements;

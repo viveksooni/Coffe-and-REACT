@@ -1,40 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
-function AddTodo({ handleClick }) {
-  const [workTodo, setWorkTodo] = useState("");
-  const [date, setDate] = useState("");
+import { todoItemsContext } from "../store/todo-item-store";
+function AddTodo() {
+  // const [workTodo, setWorkTodo] = useState("");
+  // const [date, setDate] = useState("");
+
+  const workTodo = useRef();
+  const dateDue = useRef();
+  const { AddItems } = useContext(todoItemsContext);
 
   return (
     <div className="container text-center">
       <div className="row kg-row">
         <div className="col-6">
-          <input
-            type="text"
-            value={workTodo}
-            placeholder="Enter Todo Here"
-            onChange={(e) => {
-              setWorkTodo(e.target.value);
-            }}
-          />
+          <input type="text" ref={workTodo} placeholder="Enter Todo Here" />
         </div>
         <div className="col-4">
-          <input
-            value={date}
-            type="date"
-            onChange={(e) => {
-              let date = e.target.value;
-              setDate(date);
-            }}
-          />
+          <input ref={dateDue} type="date" />
         </div>
         <div className="col-2">
           <button
             type="button"
             className="btn btn-success kg-button"
             onClick={() => {
-              handleClick(workTodo, date);
-              setDate("");
-              setWorkTodo("");
+              AddItems(workTodo.current.value, dateDue.current.value);
+              workTodo.current.value = "";
+              dateDue.current.value = "";
             }}
           >
             <IoIosAddCircle />
