@@ -5,20 +5,8 @@ import { PostListContext } from "../store/post-list-store";
 import Loading from "./Loading";
 
 function Cards() {
-  const { postList: posts, selected, setData } = useContext(PostListContext);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    fetch("https://dummyjson.com/posts")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data.posts);
-        setLoading(false);
-      });
+  const { postList: posts, selected,loading } = useContext(PostListContext);
 
-    return () => {
-      console.log("killed useEffect you murder");
-    };
-  }, []);
 
   return (
     (loading && <Loading></Loading>) ||

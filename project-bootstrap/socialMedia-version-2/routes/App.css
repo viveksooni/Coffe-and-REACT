@@ -1,0 +1,33 @@
+.app-container
+{
+    display: flex;
+}
+
+.content
+{
+    width: 100%;
+}
+
+.sidebar
+{
+    height: 100vh;
+}
+.myCss
+{
+    margin: 20px;
+    width: 50%;
+}
+
+.post
+{
+    width: 60%;
+}
+
+.badge
+{
+    margin:5px;
+}
+.spinn
+{
+    margin:20%
+}

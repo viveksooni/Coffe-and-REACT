@@ -1,17 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Clock() {
-  let date = new Date();
-  const [time, setTime] = useState(`${date.toLocaleDateString()}-${date.toLocaleTimeString()}`);
+  const [time, setTime] = useState(new Date());
 
+  useEffect(()=>{
+    const intervalId = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return ()=>{
+      clearInterval(intervalId);
+      console.log("cancel interval")
+    }
+  },[])
   setInterval(() => {
-    date = new Date();
-    setTime(`${date.toLocaleDateString()}-${date.toLocaleTimeString()}`);
+    
+    setTime(new Date());
   }, 1000);
 
   return (
     <>
-      <h1 className="text-center">{time}</h1>
+      <h1 className="text-center">{`${time.toLocaleDateString()}-${time.toLocaleTimeString()}`}</h1>
     </>
   );
 }
